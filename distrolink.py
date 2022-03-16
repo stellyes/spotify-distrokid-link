@@ -1,8 +1,10 @@
+import os
 import re
 import time
 import random
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
 
 # URL to DistroKid's official form for profile linking
 URL = "https://docs.google.com/forms/d/e/1FAIpQLSe9C_btqqUr9zQoQEwH525_z2ZAQazP5wU4ysTCyNo0KXmu9g/viewform"
@@ -16,7 +18,6 @@ SUBMIT = "//*[@id='mG61Hd']/div[2]/div/div[3]/div[1]/div[1]/div/span/span"
 REPEAT = "//a[text()='Submit another response']"
 
 def main():
-
     isrc_codes = []
     correct = False
 
@@ -50,9 +51,11 @@ def main():
         else:
             print("Restarting form entry...")    
 
+    service = Service(os.path.abspath("chromedriver.exe"))
+
     chrome_options = webdriver.ChromeOptions()                                              # Initialize Chromedriver options         
-    #chrome_options.add_argument('--headless')                                               # No GUI
-    chrome_options.add_argument("--log-level=3")                                            # 
+    chrome_options.add_argument('--headless')                                               # No GUI
+    chrome_options.add_argument("--log-level=3")                                            # Cleaner console log
     chrome_options.add_argument("disable-infobars")                                         # Masking automation
     chrome_options.add_argument('--disable-blink-features=AutomationControlled')            # Masking automation
     chrome_options.add_experimental_option('useAutomationExtension', False)                 # Masking automation
@@ -67,7 +70,7 @@ def main():
             isrc_codes.append(line)
         file.truncate(0)
 
-    web = webdriver.Chrome(executable_path=r"chromedriver.exe", options=chrome_options)
+    web = webdriver.Chrome(service=service, options=chrome_options)
     web.get(URL) 
     time.sleep(random.randint(2,7))  
 

@@ -1,3 +1,5 @@
+This service is sadly no longer offered by DistroKid! Sad. 
+
 # Quickly link your songs to your instagram profile!
 
 Distrokid offers a service via [Google Forms](https://docs.google.com/forms/d/e/1FAIpQLSe9C_btqqUr9zQoQEwH525_z2ZAQazP5wU4ysTCyNo0KXmu9g/viewform) that enables artists to request that their music on Facebook/Instagram is linked with their Instagram profile. If you're like me and have a good number of songs to link, this process can take upwards of 7 to 10 minutes, and who has time for that?  
